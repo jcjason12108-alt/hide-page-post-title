@@ -3,7 +3,7 @@
 Plugin Name: Hide Page & Post Title
 Plugin URI: https://github.com/jcjason12108-alt/hide-page-post-title
 Description: Per-post checkbox to hide the theme-rendered title. Removes core/post-title on block themes and uses scoped CSS for classic themes—does not touch content you typed in the editor.
-Version: 1.3.1
+Version: 1.3.2
 Author: Jason Cox
 License: GPLv2 or later
 Requires at least: 5.8
@@ -45,6 +45,8 @@ if ( ! class_exists( 'HPT_Hide_Title_Safe' ) ) {
 
 			// Front-end
 			if ( ! is_admin() ) {
+				add_filter( 'the_title', [ $this, 'maybe_hide_theme_title' ], 10, 2 );
+
 				// Block themes: completely remove the Post Title block output
 				add_filter( 'render_block', [ $this, 'maybe_strip_post_title_block' ], 10, 2 );
 
@@ -138,6 +140,23 @@ if ( ! class_exists( 'HPT_Hide_Title_Safe' ) ) {
 		}
 
 		/**
+		 * Fallback for themes that render the title through the_title() instead
+		 * of a Post Title block or recognizable title markup.
+		 */
+		public function maybe_hide_theme_title( $title, $post_id = 0 ) {
+			if ( ! is_singular() || ! in_the_loop() ) {
+				return $title;
+			}
+
+			$queried_id = (int) get_queried_object_id();
+			if ( $queried_id < 1 || (int) $post_id !== $queried_id ) {
+				return $title;
+			}
+
+			return $this->is_hide_enabled_for_current() ? '' : $title;
+		}
+
+		/**
 		 * Block themes: remove the Post Title block output.
 		 * This avoids any CSS guesswork and only removes the theme-rendered title.
 		 */
@@ -160,7 +179,7 @@ if ( ! class_exists( 'HPT_Hide_Title_Safe' ) ) {
 
 		/**
 		 * Classic themes: inject scoped CSS targeting only typical title locations.
-		 * We DO NOT filter `the_title`, so headings inside the content are untouched.
+		 * Editor headings are content blocks, so they are not affected by these selectors.
 		 */
 		public function enqueue_inline_css() {
 			if ( ! $this->is_hide_enabled_for_current() ) {

@@ -4,7 +4,7 @@ Tags: title, page title, post title, block themes, classic themes
 Requires at least: 5.8
 Tested up to: 6.9.4
 Requires PHP: 7.0
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,13 +38,16 @@ If the repository is private, add a GitHub token with read access to the reposit
 
 = Does this hide headings in my post content? =
 
-No. It avoids filtering the_title and targets only theme-rendered title output.
+No. It only filters the saved post title for the current singular post, so headings typed in the editor are not affected.
 
 = Does it work with custom post types? =
 
 Yes. The checkbox is added to public custom post types.
 
 == Changelog ==
+
+= 1.3.2 =
+* Added a the_title fallback for themes that do not use standard title classes or Post Title blocks.
 
 = 1.3.1 =
 * Fixed title hiding on pages and themes that do not use the postid body class.
