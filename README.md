@@ -3,6 +3,7 @@
 **Version:** 1.2.0  
 **Author:** Jason Cox  
 **License:** GPLv2 or later  
+**Repository:** https://github.com/jcjason12108-alt/hide-page-post-title
 
 Adds a per-post checkbox to hide the **theme-rendered title** without touching the content you typed in the editor.  
 - On **block themes**, the plugin removes the `core/post-title` block output.  

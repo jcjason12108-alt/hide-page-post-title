@@ -1,11 +1,16 @@
 <?php
 /*
 Plugin Name: Hide Page & Post Title
+Plugin URI: https://github.com/jcjason12108-alt/hide-page-post-title
 Description: Per-post checkbox to hide the theme-rendered title. Removes core/post-title on block themes and uses scoped CSS for classic themes—does not touch content you typed in the editor.
 Version: 1.2.0
 Author: Jason Cox
 License: GPLv2 or later
 */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! class_exists( 'HPT_Hide_Title_Safe' ) ) {
 
@@ -64,9 +69,18 @@ if ( ! class_exists( 'HPT_Hide_Title_Safe' ) ) {
 
 		public function save_metabox( $post_id ) {
 			if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
-				|| ! isset( $_POST[ $this->meta_key . '_noncename' ] )
-				|| ! wp_verify_nonce( $_POST[ $this->meta_key . '_noncename' ], $this->meta_key . '_dononce' )
+				|| wp_is_post_autosave( $post_id )
+				|| wp_is_post_revision( $post_id )
 			) {
+				return;
+			}
+
+			$nonce_name = $this->meta_key . '_noncename';
+			$nonce      = isset( $_POST[ $nonce_name ] )
+				? sanitize_text_field( wp_unslash( $_POST[ $nonce_name ] ) )
+				: '';
+
+			if ( ! wp_verify_nonce( $nonce, $this->meta_key . '_dononce' ) ) {
 				return;
 			}
 
