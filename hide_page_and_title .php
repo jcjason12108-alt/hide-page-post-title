@@ -12,6 +12,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if ( file_exists( __DIR__ . '/plugin-update-checker/plugin-update-checker.php' ) ) {
+	require_once __DIR__ . '/plugin-update-checker/plugin-update-checker.php';
+
+	$hpt_update_checker = \YahnisElsts\PluginUpdateChecker\v5\PucFactory::buildUpdateChecker(
+		'https://github.com/jcjason12108-alt/hide-page-post-title/',
+		__FILE__,
+		'hide-page-post-title'
+	);
+	$hpt_update_checker->setBranch( 'main' );
+}
+
 if ( ! class_exists( 'HPT_Hide_Title_Safe' ) ) {
 
 	class HPT_Hide_Title_Safe {
