@@ -21,6 +21,11 @@ if ( file_exists( __DIR__ . '/plugin-update-checker/plugin-update-checker.php' )
 		'hide-page-post-title'
 	);
 	$hpt_update_checker->setBranch( 'main' );
+
+	$hpt_github_token = defined( 'HPT_UPDATE_GITHUB_TOKEN' ) ? HPT_UPDATE_GITHUB_TOKEN : getenv( 'HPT_UPDATE_GITHUB_TOKEN' );
+	if ( ! empty( $hpt_github_token ) ) {
+		$hpt_update_checker->setAuthentication( $hpt_github_token );
+	}
 }
 
 if ( ! class_exists( 'HPT_Hide_Title_Safe' ) ) {

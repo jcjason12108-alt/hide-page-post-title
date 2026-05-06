@@ -21,6 +21,14 @@ For block themes, the plugin removes the core/post-title block output. For class
 2. In WordPress, go to Plugins > Add New > Upload Plugin.
 3. Upload the ZIP and activate the plugin.
 
+== GitHub Updates ==
+
+Automatic updates are powered by Plugin Update Checker and use the GitHub repository at https://github.com/jcjason12108-alt/hide-page-post-title.
+
+If the repository is private, add a GitHub token with read access to the repository in wp-config.php:
+
+`define( 'HPT_UPDATE_GITHUB_TOKEN', 'your-github-token' );`
+
 == Frequently Asked Questions ==
 
 = Does this hide headings in my post content? =
