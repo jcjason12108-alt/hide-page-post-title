@@ -3,7 +3,7 @@
 Plugin Name: Hide Page & Post Title
 Plugin URI: https://github.com/jcjason12108-alt/hide-page-post-title
 Description: Per-post checkbox to hide the theme-rendered title. Removes core/post-title on block themes and uses scoped CSS for classic themes—does not touch content you typed in the editor.
-Version: 1.3.0
+Version: 1.3.1
 Author: Jason Cox
 License: GPLv2 or later
 Requires at least: 5.8
@@ -49,6 +49,7 @@ if ( ! class_exists( 'HPT_Hide_Title_Safe' ) ) {
 				add_filter( 'render_block', [ $this, 'maybe_strip_post_title_block' ], 10, 2 );
 
 				// Classic themes: scoped CSS that only targets header/title areas
+				add_filter( 'body_class', [ $this, 'add_body_class' ] );
 				add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_inline_css' ] );
 			}
 
@@ -150,6 +151,13 @@ if ( ! class_exists( 'HPT_Hide_Title_Safe' ) ) {
 			return $block_content;
 		}
 
+		public function add_body_class( $classes ) {
+			if ( $this->is_hide_enabled_for_current() ) {
+				$classes[] = 'hpt-hide-title-enabled';
+			}
+			return $classes;
+		}
+
 		/**
 		 * Classic themes: inject scoped CSS targeting only typical title locations.
 		 * We DO NOT filter `the_title`, so headings inside the content are untouched.
@@ -159,27 +167,28 @@ if ( ! class_exists( 'HPT_Hide_Title_Safe' ) ) {
 				return;
 			}
 
-			$post_id = (int) get_queried_object_id();
-
 			$handle = 'hpt-hide-title-inline';
 			wp_register_style( $handle, false, [], null );
 			wp_enqueue_style( $handle );
 
-			/* 
+			/*
 			 * Carefully chosen selectors:
-			 * - .entry-title, .wp-block-post-title, .page-title: common theme title classes
-			 * - .entry-header .entry-title / .page-header .page-title: header-scoped only
-			 * - Avoids generic "h1" so body headings remain visible
-			 * - Scoped to .postid-{ID} so only the current singular is affected
+			 * - Scoped by a body class that is only added when this post is enabled.
+			 * - Targets theme title regions and top-level article title classes.
+			 * - Avoids generic "h1" so body headings remain visible.
 			 */
-			$css = sprintf(
-				'.postid-%1$d .entry-title,
-				 .postid-%1$d .wp-block-post-title,
-				 .postid-%1$d .page-title,
-				 .postid-%1$d .entry-header .entry-title,
-				 .postid-%1$d .page-header .page-title { display: none !important; }',
-				$post_id
-			);
+			$css = '
+				body.hpt-hide-title-enabled .entry-header .entry-title,
+				body.hpt-hide-title-enabled .page-header .page-title,
+				body.hpt-hide-title-enabled .post-header .entry-title,
+				body.hpt-hide-title-enabled article > .entry-title,
+				body.hpt-hide-title-enabled article > header .entry-title,
+				body.hpt-hide-title-enabled main > .entry-title,
+				body.hpt-hide-title-enabled main > .page-title,
+				body.hpt-hide-title-enabled .wp-block-post-title {
+					display: none !important;
+				}
+			';
 
 			wp_add_inline_style( $handle, $css );
 		}

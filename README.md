@@ -1,6 +1,6 @@
 # Hide Page & Post Title (WordPress Plugin)
 
-**Version:** 1.3.0  
+**Version:** 1.3.1  
 **Author:** Jason Cox  
 **License:** GPLv2 or later  
 **Repository:** https://github.com/jcjason12108-alt/hide-page-post-title  
@@ -52,6 +52,10 @@ This ensures only the theme-rendered title disappears — body content and edito
 ⸻
 
 Changelog
+
+1.3.1
+	•	Fixed title hiding on pages and themes that do not use the postid body class.
+	•	Added a plugin-specific front-end body class for safer title scoping.
 
 1.3.0
 	•	Added GitHub update support with Plugin Update Checker.

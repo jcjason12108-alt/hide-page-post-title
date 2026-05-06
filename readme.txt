@@ -4,7 +4,7 @@ Tags: title, page title, post title, block themes, classic themes
 Requires at least: 5.8
 Tested up to: 6.9.4
 Requires PHP: 7.0
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,6 +45,10 @@ No. It avoids filtering the_title and targets only theme-rendered title output.
 Yes. The checkbox is added to public custom post types.
 
 == Changelog ==
+
+= 1.3.1 =
+* Fixed title hiding on pages and themes that do not use the postid body class.
+* Added a plugin-specific front-end body class for safer title scoping.
 
 = 1.3.0 =
 * Added GitHub update support with Plugin Update Checker.
