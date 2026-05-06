@@ -4,7 +4,7 @@ Tags: title, page title, post title, block themes, classic themes
 Requires at least: 5.8
 Tested up to: 6.9.4
 Requires PHP: 7.0
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,6 +45,11 @@ No. It avoids filtering the_title and targets only theme-rendered title output.
 Yes. The checkbox is added to public custom post types.
 
 == Changelog ==
+
+= 1.3.0 =
+* Added GitHub update support with Plugin Update Checker.
+* Added optional private repository token support.
+* Added current WordPress and PHP compatibility metadata.
 
 = 1.2.0 =
 * Added safe CSS scoping for classic themes.
