@@ -2,12 +2,17 @@
 Contributors: jcjason12108-alt
 Tags: title, page title, post title, block themes, classic themes
 Requires at least: 5.8
-Tested up to: 6.8
+Tested up to: 6.9.4
+Requires PHP: 7.0
 Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Adds a per-post checkbox to hide the theme-rendered title without touching headings typed in the editor.
+
+Requires WordPress Version: 5.8 or higher
+Compatible up to: 6.9.4
+Requires PHP Version: 7.0 or higher
 
 == Description ==
 

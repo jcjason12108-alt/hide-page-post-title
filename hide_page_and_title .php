@@ -6,6 +6,9 @@ Description: Per-post checkbox to hide the theme-rendered title. Removes core/po
 Version: 1.2.0
 Author: Jason Cox
 License: GPLv2 or later
+Requires at least: 5.8
+Tested up to: 6.9.4
+Requires PHP: 7.0
 */
 
 if ( ! defined( 'ABSPATH' ) ) {
