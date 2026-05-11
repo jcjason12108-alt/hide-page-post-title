@@ -4,7 +4,7 @@ Tags: title, page title, post title, block themes, classic themes
 Requires at least: 5.8
 Tested up to: 6.9.4
 Requires PHP: 7.0
-Stable tag: 1.3.3
+Stable tag: 1.3.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,6 +45,10 @@ No. It only filters the saved post title for the current singular post, so headi
 Yes. The checkbox is added to public custom post types.
 
 == Changelog ==
+
+= 1.3.4 =
+* Renamed the main plugin file to remove the accidental space before `.php`.
+* Added a legacy loader that migrates active installs to the corrected plugin basename.
 
 = 1.3.3 =
 * Improved post title hiding for themes that render single post titles outside the main loop.
