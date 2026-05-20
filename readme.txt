@@ -2,17 +2,17 @@
 Contributors: jcjason12108-alt
 Tags: title, page title, post title, block themes, classic themes
 Requires at least: 5.8
-Tested up to: 6.9.4
-Requires PHP: 7.0
-Stable tag: 1.3.4
+Tested up to: 7.0
+Requires PHP: 7.4
+Stable tag: 1.3.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Adds a per-post checkbox to hide the theme-rendered title without touching headings typed in the editor.
 
 Requires WordPress Version: 5.8 or higher
-Compatible up to: 6.9.4
-Requires PHP Version: 7.0 or higher
+Compatible up to: 7.0
+Requires PHP Version: 7.4 or higher
 
 == Description ==
 
@@ -45,6 +45,10 @@ No. It only filters the saved post title for the current singular post, so headi
 Yes. The checkbox is added to public custom post types.
 
 == Changelog ==
+
+= 1.3.5 =
+* Confirmed WordPress 7.0 compatibility metadata.
+* Raised the declared PHP requirement to 7.4 to match WordPress 7.0.
 
 = 1.3.4 =
 * Renamed the main plugin file to remove the accidental space before `.php`.
