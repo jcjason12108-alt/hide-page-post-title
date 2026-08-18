@@ -4,7 +4,7 @@ Tags: title, page title, post title, block themes, classic themes
 Requires at least: 5.8
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.3.5
+Stable tag: 1.3.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,6 +45,9 @@ No. It only filters the saved post title for the current singular post, so headi
 Yes. The checkbox is added to public custom post types.
 
 == Changelog ==
+
+= 1.3.6 =
+* Updated the bundled Plugin Update Checker library from 5.6 to 5.7.
 
 = 1.3.5 =
 * Confirmed WordPress 7.0 compatibility metadata.
