@@ -4,7 +4,7 @@ Tags: title, page title, post title, block themes, classic themes
 Requires at least: 5.8
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.3.6
+Stable tag: 1.3.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,6 +19,7 @@ Requires PHP Version: 7.4 or higher
 Hide Page & Post Title adds a sidebar checkbox to posts, pages, and public custom post types. When enabled, it hides only the title rendered by the active theme.
 
 For block themes, the plugin removes the core/post-title block output. For classic themes, it injects scoped CSS for common title containers on the current singular post.
+The saved title remains available to Jetpack Social and other social preview tags in the page header.
 
 == Installation ==
 
@@ -40,11 +41,18 @@ If the repository is private, add a GitHub token with read access to the reposit
 
 No. It only filters the saved post title for the current singular post, so headings typed in the editor are not affected.
 
+= Will the title appear when I share the post on social media? =
+
+Yes. The title remains in the page-header metadata used for social link previews, including Jetpack's Open Graph title.
+
 = Does it work with custom post types? =
 
 Yes. The checkbox is added to public custom post types.
 
 == Changelog ==
+
+= 1.3.7 =
+* Preserved the saved post title in page-header social and SEO metadata, including Jetpack Open Graph tags.
 
 = 1.3.6 =
 * Updated the bundled Plugin Update Checker library from 5.6 to 5.7.
