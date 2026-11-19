@@ -3,7 +3,7 @@
 Plugin Name: Hide Page & Post Title
 Plugin URI: https://github.com/jcjason12108-alt/hide-page-post-title
 Description: Per-post checkbox to hide the theme-rendered title. Removes core/post-title on block themes and uses scoped CSS for classic themes—does not touch content you typed in the editor.
-Version: 1.3.6
+Version: 1.3.7
 Author: Jason Cox
 License: GPLv2 or later
 Requires at least: 5.8
@@ -144,7 +144,8 @@ if ( ! class_exists( 'HPT_Hide_Title_Safe' ) ) {
 		 * of a Post Title block or recognizable title markup.
 		 */
 		public function maybe_hide_theme_title( $title, $post_id = 0 ) {
-			if ( ! is_singular() || is_admin() || is_feed() ) {
+			// Social preview and SEO tags are built in wp_head and need the saved title.
+			if ( ! is_singular() || is_admin() || is_feed() || doing_action( 'wp_head' ) ) {
 				return $title;
 			}
 
